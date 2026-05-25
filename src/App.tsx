@@ -69,14 +69,14 @@ const notificationsData: Notification[] = [
 
 function TopBar({ onNotificationClick, onLogoClick }: { onNotificationClick?: () => void; onLogoClick?: () => void }) {
   return (
-    <div className="h-16 border-b border-gray-200 bg-white px-6 flex items-center justify-between">
+    <div className="h-16 border-b border-gray-200 bg-white px-4 sm:px-6 flex items-center justify-between gap-2">
       <button onClick={onLogoClick} className="flex items-center gap-2 hover:opacity-75 transition-opacity">
         <div className="w-8 h-8 bg-gray-900 rounded-md flex items-center justify-center">
           <div className="w-4 h-4 border-2 border-white rounded-sm" />
         </div>
         <span className="text-lg font-semibold text-gray-900">Liquidity</span>
       </button>
-      <div className="flex-1 max-w-xl mx-8">
+      <div className="flex-1 min-w-0 max-w-xl mx-3 sm:mx-8">
         <div className="relative">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
           <input type="text" placeholder="Search companies..." className="w-full h-10 pl-10 pr-4 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-gray-200" />
@@ -90,8 +90,8 @@ function TopBar({ onNotificationClick, onLogoClick }: { onNotificationClick?: ()
           <span className="absolute -top-0.5 -right-0.5 w-5 h-5 bg-red-500 text-white text-xs font-semibold rounded-full flex items-center justify-center">3</span>
         </div>
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-gray-900 text-white rounded-full flex items-center justify-center text-xs font-semibold">HS</div>
-          <span className="text-sm font-medium text-gray-900">Harmeet Singh</span>
+          <div className="w-8 h-8 bg-gray-900 text-white rounded-full flex items-center justify-center text-xs font-semibold shrink-0">HS</div>
+          <span className="hidden md:inline text-sm font-medium text-gray-900">Harmeet Singh</span>
         </div>
       </div>
     </div>
@@ -123,14 +123,14 @@ function PortfolioDashboard({ onCompanyClick, onNotificationClick, onLogoClick }
   return (
     <div className="min-h-screen bg-white">
       <TopBar onNotificationClick={onNotificationClick} onLogoClick={onLogoClick} />
-      <div className="bg-gray-50 border-b border-gray-200 px-6 py-3">
+      <div className="bg-gray-50 border-b border-gray-200 px-4 sm:px-6 py-3">
         <div className="flex items-center gap-2 text-sm">
           <div className="w-2 h-2 bg-green-500 rounded-full" />
           <span className="text-gray-500">Last updated: 14 minutes ago. All systems operational.</span>
         </div>
       </div>
-      <div className="px-6 py-4 border-b border-gray-200 flex items-center justify-between">
-        <div className="flex gap-6">
+      <div className="px-4 sm:px-6 py-4 border-b border-gray-200 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex gap-6 overflow-x-auto whitespace-nowrap">
           <button className="text-sm font-semibold text-gray-900 border-b-2 border-gray-900 pb-1">All (47)</button>
           <button className="text-sm text-gray-500 hover:text-gray-900 pb-1">On Track (38)</button>
           <button className="text-sm text-gray-500 hover:text-gray-900 pb-1">Needs Attention (6)</button>
@@ -143,9 +143,9 @@ function PortfolioDashboard({ onCompanyClick, onNotificationClick, onLogoClick }
           </button>
         </div>
       </div>
-      <div className="p-6">
-        <div className="border border-gray-200 rounded-lg overflow-hidden">
-          <table className="w-full">
+      <div className="p-4 sm:p-6">
+        <div className="border border-gray-200 rounded-lg overflow-x-auto">
+          <table className="w-full min-w-[820px]">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
                 <th className="text-left px-4 py-3 text-xs font-semibold text-gray-500 uppercase tracking-wider">Company Name</th>
@@ -180,9 +180,9 @@ function PortfolioDashboard({ onCompanyClick, onNotificationClick, onLogoClick }
             </tbody>
           </table>
         </div>
-        <div className="flex items-center justify-between mt-4">
+        <div className="flex flex-wrap items-center justify-between gap-3 mt-4">
           <span className="text-sm text-gray-500">Showing 1-6 of 47</span>
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             <button className="px-3 py-1.5 border border-gray-200 rounded-lg text-sm hover:bg-gray-50">Previous</button>
             <button className="px-3 py-1.5 bg-gray-900 text-white rounded-lg text-sm">1</button>
             <button className="px-3 py-1.5 border border-gray-200 rounded-lg text-sm hover:bg-gray-50">2</button>
@@ -202,29 +202,29 @@ function CompanyView({ company, onBack, onNotificationClick, onLogoClick }: any)
   return (
     <div className="min-h-screen bg-white">
       <TopBar onNotificationClick={onNotificationClick} onLogoClick={onLogoClick} />
-      <div className="bg-gray-50 border-b border-gray-200 px-6 py-3">
+      <div className="bg-gray-50 border-b border-gray-200 px-4 sm:px-6 py-3">
         <button onClick={onBack} className="flex items-center gap-2 text-sm text-gray-500 hover:text-gray-900">
           <ArrowLeft className="w-4 h-4" />
           <span>Portfolio &gt; {company.name}</span>
         </button>
       </div>
 
-      <div className="p-6">
+      <div className="p-4 sm:p-6">
         {/* Header with actions */}
         <div className="mb-6">
-          <div className="flex items-center justify-between mb-2">
-            <div className="flex items-center gap-3">
-              <h1 className="text-3xl font-bold text-gray-900">{company.name}</h1>
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between mb-2">
+            <div className="flex flex-wrap items-center gap-3">
+              <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">{company.name}</h1>
               <StatusPill status={company.status} />
               <button className="text-sm text-blue-600 hover:underline">Override Status</button>
             </div>
-            <div className="flex gap-2">
+            <div className="flex flex-wrap gap-2">
               <button className="px-4 py-2 border border-gray-200 rounded-lg text-sm font-medium hover:bg-gray-50 text-gray-700">Share Report</button>
               <button className="px-4 py-2 border border-gray-200 rounded-lg text-sm font-medium hover:bg-gray-50 text-gray-700">Schedule Meeting</button>
               <button className="px-4 py-2 border border-gray-200 rounded-lg text-sm font-medium hover:bg-gray-50 text-gray-700">Add Notes</button>
             </div>
           </div>
-          <div className="flex items-center gap-6 text-sm text-gray-500">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-6 text-sm text-gray-500">
             <span>Deal Owner: <span className="font-medium text-gray-900">{company.owner}</span></span>
             <span>Last batch processed: May 26, 2026 2:14 PM</span>
           </div>
@@ -257,15 +257,15 @@ function CompanyView({ company, onBack, onNotificationClick, onLogoClick }: any)
         </div>
 
         {/* Metric Cards */}
-        <div className="grid grid-cols-3 gap-4 mb-6">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
           <MetricCard title="Loan/Balance Ratio" value="0.84" status="At Risk" trend="up" />
           <MetricCard title="Stable Currency %" value="16%" status="At Risk" trend="down" />
           <MetricCard title="Balance Velocity 7d" value="-8.4%" status="At Risk" trend="down" />
         </div>
 
         {/* Chart */}
-        <div className="border border-gray-200 rounded-lg p-6 mb-6 relative">
-          <div className="flex items-center justify-between mb-4">
+        <div className="border border-gray-200 rounded-lg p-4 sm:p-6 mb-6 relative">
+          <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
             <h3 className="text-lg font-semibold text-gray-900">30 Day Balance Trend</h3>
             <div className="flex items-center gap-3">
               <div className="flex items-center gap-2">
@@ -318,7 +318,7 @@ function CompanyView({ company, onBack, onNotificationClick, onLogoClick }: any)
 
           {/* Alert popup tooltip */}
           {activeAlertPopup && (
-            <div className="absolute bg-white border border-gray-200 rounded-lg shadow-lg p-4 w-72 z-10" style={{ top: activeAlertPopup === 11 ? "80px" : "140px", left: activeAlertPopup === 11 ? "280px" : "580px" }}>
+            <div className="absolute bg-white border border-gray-200 rounded-lg shadow-lg p-4 w-72 max-w-[calc(100vw-2rem)] z-10" style={{ top: activeAlertPopup === 11 ? "80px" : "140px", left: activeAlertPopup === 11 ? "280px" : "580px" }}>
               <div className="flex items-center justify-between mb-2">
                 <span className="text-xs font-semibold text-gray-500 uppercase">Alert Detail</span>
                 <button onClick={() => setActiveAlertPopup(null)} className="p-0.5 hover:bg-gray-100 rounded">
@@ -398,13 +398,15 @@ function MetricCard({ title, value, status, trend }: { title: string; value: str
 function AlertItem({ severity, title, timestamp }: { severity: string; title: string; timestamp: string }) {
   const severityColors: Record<string, string> = { red: "bg-red-500", yellow: "bg-amber-500", green: "bg-green-500" };
   return (
-    <div className="flex items-start gap-3 p-4 border border-gray-200 rounded-lg">
-      <div className={`w-2 h-2 rounded-full mt-1.5 flex-shrink-0 ${severityColors[severity]}`} />
-      <div className="flex-1">
-        <p className="text-sm font-medium text-gray-900">{title}</p>
-        <p className="text-xs text-gray-500 mt-1">{timestamp}</p>
+    <div className="flex flex-col sm:flex-row sm:items-start gap-3 p-4 border border-gray-200 rounded-lg">
+      <div className="flex items-start gap-3 flex-1 min-w-0">
+        <div className={`w-2 h-2 rounded-full mt-1.5 flex-shrink-0 ${severityColors[severity]}`} />
+        <div className="flex-1 min-w-0">
+          <p className="text-sm font-medium text-gray-900">{title}</p>
+          <p className="text-xs text-gray-500 mt-1">{timestamp}</p>
+        </div>
       </div>
-      <div className="flex gap-2">
+      <div className="flex gap-2 shrink-0">
         <button className="px-3 py-1.5 text-xs border border-gray-200 rounded hover:bg-gray-50 font-medium">Acknowledge</button>
         <button className="px-3 py-1.5 text-xs border border-gray-200 rounded hover:bg-gray-50 font-medium flex items-center gap-1">Dismiss <ChevronDown className="w-3 h-3" /></button>
       </div>
@@ -421,7 +423,7 @@ function NotificationPanel({ onClose }: { onClose: () => void }) {
   return (
     <>
       <div className="fixed inset-0 bg-black/30 z-40" onClick={onClose} />
-      <div className="fixed top-0 right-0 h-full w-[400px] bg-white shadow-2xl z-50 flex flex-col">
+      <div className="fixed top-0 right-0 h-full w-full max-w-[400px] bg-white shadow-2xl z-50 flex flex-col">
         <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200 flex-shrink-0">
           <h2 className="text-lg font-semibold text-gray-900">Notifications</h2>
           <button onClick={onClose} className="p-1.5 hover:bg-gray-100 rounded-lg transition-colors">
@@ -464,7 +466,7 @@ export default function App() {
   const goToDashboard = () => { setCurrentScreen("dashboard"); setShowNotifications(false); };
 
   return (
-    <div className="w-[1440px] mx-auto bg-white shadow-2xl relative">
+    <div className="w-full max-w-[1440px] mx-auto bg-white shadow-2xl relative">
       {currentScreen === "dashboard" && (
         <PortfolioDashboard
           onCompanyClick={(company: CompanyData) => { setSelectedCompany(company); setCurrentScreen("company"); }}
